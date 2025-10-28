@@ -1,0 +1,5 @@
+{
+  "name": "AI Cover Art Generator",
+  "description": "Generate stunning cover art for your YouTube videos or podcast episodes using AI. Simply enter a title and let Gemini create a unique image for you.",
+  "requestFramePermissions": []
+}
