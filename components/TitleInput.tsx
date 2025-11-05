@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { MagicWandIcon } from './icons/MagicWandIcon';
+import { ASPECT_RATIOS } from '../constants';
 
 interface TitleInputProps {
   value: string;
@@ -10,12 +11,6 @@ interface TitleInputProps {
   aspectRatio: string;
   onAspectRatioChange: (ratio: string) => void;
 }
-
-const aspectRatios = [
-  { value: '16:9', label: 'Landscape' },
-  { value: '1:1', label: 'Square' },
-  { value: '9:16', label: 'Portrait' },
-];
 
 const TitleInput: React.FC<TitleInputProps> = ({ value, onChange, onSubmit, isLoading, aspectRatio, onAspectRatioChange }) => {
   return (
@@ -51,23 +46,23 @@ const TitleInput: React.FC<TitleInputProps> = ({ value, onChange, onSubmit, isLo
           )}
         </button>
       </div>
-      <div className="flex items-center justify-center gap-2 sm:gap-4 mt-4">
-        <span className="text-sm font-medium text-gray-400 shrink-0">Aspect Ratio:</span>
-        <div className="flex items-center gap-2 rounded-lg bg-gray-700/50 p-1 border border-gray-600">
-          {aspectRatios.map((ratio) => (
+      <div className="mt-4">
+        <span className="block text-sm font-medium text-gray-400 mb-2">Aspect Ratio:</span>
+        <div className="flex flex-wrap items-center gap-2">
+          {ASPECT_RATIOS.map((ratio) => (
             <button
               key={ratio.value}
               type="button"
               onClick={() => onAspectRatioChange(ratio.value)}
               disabled={isLoading}
-              className={`px-3 py-1 text-sm font-semibold rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed
+              className={`px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed
               ${aspectRatio === ratio.value
-                  ? 'bg-purple-600 text-white shadow'
-                  : 'text-gray-300 hover:bg-gray-600'
+                  ? 'bg-purple-600 text-white shadow-lg'
+                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
               }`}
               aria-pressed={aspectRatio === ratio.value}
             >
-              {ratio.label} <span className="hidden sm:inline">({ratio.value})</span>
+              {ratio.label}
             </button>
           ))}
         </div>
